@@ -160,7 +160,13 @@
                                 <h4 class="subheading">WELCOME TO DEVSECOPS</h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">Discover why security is crucial in modern development and learn how to identify potential security risks and their solutions. Our expert instructors will guide you through the process of working with the security team and show you how to implement DevSecOps best practices. You'll also learn about Helm, Kubernetes Package Manager, Helm Charts, and Code Linting.</p></div>
+                            <br>
+                            <ul style="list-style-type:square;">INTRODUCTION <br> <li>Importance of security</li><li>Security scope</li><li>Potential security risks and their solutions</li><li>security team</li><li>How security team works</li><li>The conflicts with other team</li><li>The solution</li><li>What is DevSecOps</li></ul><br>
+                            <ul style="list-style-type:square;">INTRODUCTION TO HELM<li>Helm - Kubernetes Packages Manager</li><li>Helm architecture</li><li>Helm charts</li></ul><br>
+                            <ul style="list-style-type:square;">CODE SECURITY<li>Code security</li><li>Code linting</li><li>Lint your fronted code</li><li>Lint your Java code</li></ul><br>
+                            <ul style="list-style-type:square;">STATIC CODE ANALYSE<li>Static code analysis</li><li>Sonarqube</li><li>Install Sonarqube</li></ul>
                         </div>
+                
                     </li>
                     <li>
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
@@ -170,6 +176,38 @@
                                 <h4 class="subheading">SECURING CODE AND DEPENDENCIES</h4>
                             </div>
                             <div class="timeline-body"><p class="text-muted">In this session, we'll take a deep dive into securing your code and dependencies. You'll learn how to install Sonarqube and Helm, and use them to detect and eliminate vulnerabilities. We'll show you how to create projects, generate tokens, and run scanners to check for security threats. You'll also learn about application dependency security and how to detect known vulnerabilities.</p></div>
+                            <br>
+                            <ul style="list-style-type:square;">STATIC CODE ANALYSIS<li>Install sonarqube</li></ul>
+                            <ul style="list-style-type:circle;"><li>Install helm</li><li>Installing sonarqube helm</li><li>Modifying helm values</li><li>Setting the service type to LoadBalancer
+                            </li><li>Installed sonarqube
+                            </li><li>Check the installation and all the resources 
+                            </li><li>Connect to the UI
+                            </li></ul>
+                            <ul style="list-style-type:square;"><li>Creating projects</li><li>Create our fronted web projects in soanrqube</li></ul>
+                            <ul style="list-style-type:circle;"><li>Create project and token
+                            </li><li>Get the command to run the scanner
+                            </li></ul>
+                            <ul style="list-style-type:square;"><li>Client side installations and scanning</li>
+                            </ul>
+                            <ul style="list-style-type:circle;"><li>Install sonar-scanner using binary
+                            </li><li>Clone the project and run scan
+                            </li><li>Check the published reports. 
+                            </li><li>Possibility of integrating with existing DevOps process
+                            </li></ul><br>
+                            <ul style="list-style-type:square;">APPLICATION DEPENDENCY SECURITY<li>Application Dependency Security:
+
+                            </li></ul>
+                            <ul style="list-style-type:circle;"><li>Types of dependencies
+                            </li><li>Types of vulnerabilities - Known and Unknown
+                            </li><li>Detecting the known vulnerabilities 
+                            </li><li>Need of automating it.
+                            </li></ul><br>
+                            <ul style="list-style-type:square;">COMMON VULNERABILITIES AND EXPOSURES(CVEs)<li>CVE 
+                            </li><li>Challenges of multiple softwares and vendors 
+                            </li><li>Combined community efforts to eliminate security threats
+                            </li><li>Governance body 
+
+                            </li><li>Central Database</li></ul>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -179,7 +217,27 @@
                                 <h4>Week 2 - Day 3</h4>
                                 <h4 class="subheading">UNCOVER COMMON VULNERABILITIES AND EXPOSURES</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Don't let vulnerabilities in your application dependencies and OS packages compromise your security. Learn how to identify these vulnerabilities using build tools such as NPM and Maven. Our experts will guide you through the process of examining reports and guidelines to ensure that your projects are secure.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Don't let vulnerabilities in your application dependencies and OS packages compromise your security. Learn how to identify these vulnerabilities using build tools such as NPM and Maven. Our experts will guide you through the process of examining reports and guidelines to ensure that your projects are secure.</p></div><br>
+                            <ul style="list-style-type:square;">FINDING THE VVEs OF APPLICATION DEPENDENCIES<br><li>Using build tools to identify CVEs of your application dependencies
+                            </li><li>Integrating with your Build Tools</li><br>
+                            
+                        <ul style="list-style-type:square;">NPM TO FIND CVEs OF A REACT / NODE PROJECT<br><li>Npm Audit</li><li>Audit your frontend (ReactJS) project for CVEs</li>
+                            
+
+                            
+
+                            </li><li>Understanding reports 
+                            </li><li>Examining a CVE - Guidelines</li></ul><br>
+
+
+                            <ul style="list-style-type:square;">MOVEN AND OWSAP DEPENDENCY CHECK<br><li>Using maven to identify the java app dependencies</li><li>Owasp dependency check plugin for Maven</li><li>Finding our the CVEs of java app dependencies</li><li>Scan your Java project</li><li>When scanning can be performed</li><li>Integration with CI/CD</li></ul>
+
+                        
+                            
+
+                    
+
+
                         </div>
                     </li>
                     <li>
@@ -189,7 +247,19 @@
                                 <h4>Week 2 - Day 4</h4>
                                 <h4 class="subheading">OS PACKAGES AND CONTAINER SECURITY</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Containers and operating systems add an extra layer of security threat, which is why it's important to check and find out the threats while developing a container. Our experts will teach you about container development security and best practices for running a binary. You'll learn how to minimize the number of packages and use lightweight base images such as Alpine and Distroless images from Google.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Containers and operating systems add an extra layer of security threat, which is why it's important to check and find out the threats while developing a container. Our experts will teach you about container development security and best practices for running a binary. You'll learn how to minimize the number of packages and use lightweight base images such as Alpine and Distroless images from Google.</p></div><br>
+                            <ul style="list-style-type:square;">CONTAINER SECURITY<li>Best Security Practices to run a binary</li><li>Applying for Minimum Permissions
+                            </li><li>Best practices while developing a container</li></ul><br>
+                            <ul style="list-style-type:square;">OS PACKAGES SECURITY<li>OS packages and security
+                            </li><li>Base Image Security
+                            </li><li>Minimizing the number of packages
+                            </li><li>Lightweight base images such as Alpine
+
+                            </li><li>Distroless images from Google
+                            </li><li>Copy only the artifact to your final production image</li></ul>
+                            
+                            
+                            
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -199,7 +269,22 @@
                                 <h4>Week 2 - Day 5</h4>
                                 <h4 class="subheading">DEVELOP SECURE CONTAINERS</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Learn how to use the right base image and find CVEs of your containerized applications. Our experts will teach you about multi-stage building and how to reduce the attack surface of your containers. You'll also learn how to use Trivy for container security and scan an image using Trivy.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Learn how to use the right base image and find CVEs of your containerized applications. Our experts will teach you about multi-stage building and how to reduce the attack surface of your containers. You'll also learn how to use Trivy for container security and scan an image using Trivy.</p></div><br>
+                            <ul style="list-style-type:square;">MULTI STAGE BUILDING<li>Building containers in stages
+                            </li><li>Minimizing the packages and reducing the attack surface
+                            </li><li>Docker Multi-Stage Building for JAVA App</li><li>Production optimized container image from Multi-stage builds
+                            </li></ul><br>
+                            <ul style="list-style-type:square;">CVE CHECKS FOR CONTAINERS<li>Container Scanning for known vulnerabilities (CVEs)
+                            </li><li>What to scan on a container</li><li>Identifying the OS packages in a container
+                            </li><li>Tools that support container scanning</li></ul><br>
+                            <ul style="list-style-type:square;">USING TRIVY FOR CONTAINER SECURITY<li>Introduction to Trivy
+                            </li><li>Install Trivy
+                            </li><li>scan an image using Trivy</li></ul>
+                            
+
+                            
+
+                            
                         </div>
                     </li>
                     <li>
@@ -209,7 +294,23 @@
                                 <h4>Week 3 - Day 6</h4>
                                 <h4 class="subheading">CONFIGURATION SECURITY</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Configuration changes can be a challenge, but they don't have to compromise your security. In this session, our experts will show you how to ensure security at configuration, whether it's Kubernetes, Terraform, or Dockerfile. You'll learn about loopholes in Docker and Kubernetes and how to solve them using Trivy.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Configuration changes can be a challenge, but they don't have to compromise your security. In this session, our experts will show you how to ensure security at configuration, whether it's Kubernetes, Terraform, or Dockerfile. You'll learn about loopholes in Docker and Kubernetes and how to solve them using Trivy.</p></div><br>
+                            <ul style="list-style-type:square;">TRIVY ADVANCED USE CASES<li>Using Trivy for base image scanning
+                            </li><li>Scan the react Application Image</li><li>Using Trivy to scan your filesystem (npm project)
+                            </li><li>Scanning a Repository using Trivy
+                            </li><li>Integrating Trivy scannings with your CI/CD System 
+                            </li></ul><br>
+                            <ul style="list-style-type:square;">CONFIGURATION SECURITY<li>Introduction to configuration security
+                            </li><li>Various configurations for your project</li></ul><br>
+                            <ul style="list-style-type:square;">DOCKERFILES SECURIY<li>Loopholes in Docker
+
+                            </li><li>Trivy to scan Dockerfile</li><li>Identifying and Solving your Dockerfile</li></ul><br>
+                            <ul style="list-style-type:square;">KUBERNETES CONFIGURATION SECURITY<li>Loopholes in Kubernetes
+
+                            </li><li>Trivy to Scan your Kubernetes Manifests
+                            </li><li>Solving the configurations threats in Kubernetes</li></ul>
+                            
+                            
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -219,7 +320,26 @@
                                 <h4>Week 3 - Day 7</h4>
                                 <h4 class="subheading">SUPPLY CHAIN SECURITY</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Learn how to prevent man-in-the-middle attacks by securing your supply chain. Our experts will teach you about Terraform configurations security and the potential risks involved. You'll also learn about identifying supply chains in CI/CD pipelines and how to use hash values and digital signatures to detect file modifications.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Learn how to prevent man-in-the-middle attacks by securing your supply chain. Our experts will teach you about Terraform configurations security and the potential risks involved. You'll also learn about identifying supply chains in CI/CD pipelines and how to use hash values and digital signatures to detect file modifications.</p></div><br>
+                            <ul style="list-style-type:square;">TERRAFORM CONFIGURATIONS SECURITY<li>Overview of Terraform
+                            </li><li>Terraform Manifests
+                            </li><li>Challenges and Potentials risks on Terraform
+                            </li><li>Scanning the terraform configurations using trivy
+                            </li><li>Solving the threats in Terraform manifests</li></ul><br>
+                            <ul style="list-style-type:square;">SUPPLY CHAIN SECURITY<li>What is a Supply chain
+                            </li><li>How microservices has impacted the supply chain and increased threats
+                            </li><li>Identifying supply chains in CI/CD Pipelines
+
+                            </li></ul><br>
+                            <ul style="list-style-type:square;">MAN IN THE MIDDLE ATTACKS<li>Hash values
+                            </li><li>Hash values to detect file modifications
+
+                            </li><li>Man in the middle attack
+
+                            </li><li>Digital Signatures
+
+                            </li><li>How a Digital signature works
+                            </li><li>Supply chain security for containers</li></ul>
                         </div>
                     </li>
                     <li>
@@ -231,7 +351,20 @@
                             </div>
                             <div class="timeline-body"><p class="text-muted">Our final session is all about implementing supply chain security in an automated way and shifting it to left. You'll learn about Cosign for supply chain security of container images and how to use it to secure your projects.<br>
 
-                                Join us for an exciting journey into the world of DevSecOps and take your security skills to the next level!</p></div>
+                                Join us for an exciting journey into the world of DevSecOps and take your security skills to the next level!</p></div><br>
+                                <ul style="list-style-type:square;">COSIGN FOR SUPPLY CHAIN SECURITY OF CONTAINER IMAGES<li>Introduction to cosign
+                                </li><li>cosign to sign your container images</li><li>Sign the frontend image using the private key
+                                </li><li>Sharing the image with a registry 
+                                </li><li>Pulling the image and Validating the Signature at the receiver end
+                                </li><li>Jq or jless to simplify reading json output
+                                </li></ul><br>
+                                <ul style="list-style-type:square;">KUBERNETES POLICY MANAGEMENT<li>Kubernetes Security
+                                </li><li>Policies
+                                </li><li>Ensuring security practices using Policies
+                                </li></ul><br>
+                                <ul style="list-style-type:square;">KEYVERNO<li>Managing policies using Kyverno
+                                </li><li>Install Kyverno
+                                </li><li>Writing your first policy using Kyverno</li></ul><br>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -241,7 +374,21 @@
                                 <h4>Week 3 - Day 9</h4>
                                 <h4 class="subheading">POLICIES IN KUBERNETES</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Any insecure and unreliable applications and configurations should be prevented from entering to your production infrastructure. Use policies to ensure that your infrastructure decline non-secure requests from people and systems.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Any insecure and unreliable applications and configurations should be prevented from entering to your production infrastructure. Use policies to ensure that your infrastructure decline non-secure requests from people and systems.</p></div><br>
+                            <ul style="list-style-type:square;">WIRING POLICIES IN KYVERNO<li>Policy Syntax
+                            </li><li>Writing a policy</li><li>Reusing Kyverno existing policies
+                            </li></ul><br>
+                            <ul style="list-style-type:square;">KEYVERNO POLICIES AND ADMISSION CONTROLLERS<li>Restrict the container registries using policies
+                            </li><li>A Practical demo to allow only trusted registries</li><li>Configmap and annotations for the policy
+                            </li><li>Image validation with policies 
+                            </li><li>Validate the image signature to ensure supply chain security 
+                            </li><li>Practical demos using frontend and java containers</li></ul><br>
+                            <ul style="list-style-type:square;">SECURITY AS PIPELINES/CODE<li>Security as Pipelines / Code
+                            </li><li>Security as Pipelines
+                            </li><li>Need of integrating security with CI/CD
+                            </li><li>Avoid human interactions as much as possible
+                            </li><li>Shifting Security to left with Pipelines</li></ul>
+                            
                         </div>
                     </li>
                     <li>
@@ -251,7 +398,42 @@
                                 <h4>Week 3 - Day 10</h4>
                                 <h4 class="subheading"> DEVESCOPS AND CI/CD - PART 1</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Security is no longer a trouble once it's well integrated with your CI/CD systems. Let's build a CI/CD system for your projects with security in the right space. :)</p></div>
+                            <div class="timeline-body"><p class="text-muted">Security is no longer a trouble once it's well integrated with your CI/CD systems. Let's build a CI/CD system for your projects with security in the right space. :)</p></div><br>
+                            <ul style="list-style-type:square;">SECURITY AS PIPELINES / CODE<li>Pipelines to automate security stuff
+
+                            </li><li>Various securities to validate within pipelines
+
+                            </li><li>How will your pipelines validate a success / failure 
+
+                            </li><li>Exit codes in Linux</li></ul><br>
+                            <ul style="list-style-type:square;">DEVSECOPS<li>Build Security into CI/CD Pipelines
+
+                            </li><li>Setup Jenkins
+
+                            </li><li>Installing client side softwares on Jenkins server
+                            </li></ul>
+                            <ul style="list-style-type:circle;"><li>Build tools - maven, npm
+
+                            </li><li>Kubectl 
+
+                            </li><li>Gcloud for GKE integration
+                            </li><li>Trivy 
+                            </li><li>Sonar-scanner</li><li>Docker 
+                            </li><li>Registry credentials 
+                            </li><li>Git
+                            </li><li>Cosign 
+                            </li></ul>
+                            <ul style="list-style-type:square;"><li>Installing Server side softwares</li>
+                            </ul>
+                            <ul style="list-style-type:circle;"><li>GKE
+                            </li><li>Kyverno
+                            </li><li>Sonarqube Server
+                            </li></ul>
+                            <ul style="list-style-type:square;"><li>Configuring the jenkins servers
+                            </li></ul>
+                            <ul style="list-style-type:circle;"><li>Docker socket access
+                            </li><li>GKE Access
+                            </li><li>Registry Access</li></ul>
                         </div>
                     </li>
                     <li class="timeline-inverted">
