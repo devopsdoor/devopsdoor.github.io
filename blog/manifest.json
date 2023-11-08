@@ -4,19 +4,19 @@
   "description": "A Blog By DevOps Door.",
   "icons": [
     {
-      "src": "/https://devopsdoor.com/blog/splash-512x512.png",
+      "src": "/splash-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "/https://devopsdoor.com/blog/favicon-192x192.png",
+      "src": "/favicon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
   ],
-  "start_url": "/https://devopsdoor.com/blog/",
+  "start_url": "/",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/https://devopsdoor.com/blog/",
+  "scope": "/",
   "theme_color": "#ffffff"
 }

@@ -4,8 +4,8 @@ self.addEventListener("install", function(e) {
   e.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
-        "/https://devopsdoor.com/blog/css/pixyll.css?202311081632",
-        "/https://devopsdoor.com/blog/"
+        "/css/pixyll.css?202311081641",
+        "/"
       ]);
     })
   );

@@ -1,1 +1,1 @@
-Sitemap: https://devopsdoor.com/blog/https://devopsdoor.com/blog/sitemap.xml
+Sitemap: /sitemap.xml
