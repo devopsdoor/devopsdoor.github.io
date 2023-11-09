@@ -20,7 +20,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for DevOpsDoor Blog" href="/blog/feed.xml" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/blog/css/pixyll.css?202311091008" type="text/css">
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202311091034" type="text/css">
 
     <!-- Fonts -->
     
@@ -124,7 +124,24 @@
   <article class="post-content">
   <div class="py2">
   
-    <form action="https://formspree.io/basil1987@gmail.com" method="POST" class="form-stacked">
+    <!-- <form action="https://formspree.io/basil1987@gmail.com" method="POST" class="form-stacked">
+      <label>
+        Email
+        <input type="text" name="email" class="field-light" placeholder="Email Address">
+      </label>
+      <label>
+        Content
+        <textarea type="text" name="content" class="field-light" rows="5" placeholder="What would you like to say?" style="resize: vertical"></textarea>
+      </label>
+
+      <input type="hidden" name="_next" value="/blog/thanks/" />
+      <input type="hidden" name="_subject" value="New submission!" />
+      <input type="text" name="_gotcha" style="display:none" />
+
+      <input type="submit" class="button button-blue button-big mobile-block" value="Say Hello">
+    </form> -->
+    <form action="https://api.web3forms.com/submit" method="POST" class="form-stacked">
+      <input type="hidden" name="access_key" value="f6fdfe33-a31d-43a3-a93e-e53b28e5f081">
       <label>
         Email
         <input type="text" name="email" class="field-light" placeholder="Email Address">
