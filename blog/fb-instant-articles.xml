@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title></title>
-    <link></link>
+    <link>http://devopsdoor.com</link>
     <description>
       A Blog By DevOps Door.
     </description>
@@ -10,7 +10,7 @@
         
             <item>
                 <title>Beginner&apos;s Guide to DevOps - Unlocking the Power of Seamless Software Development</title>
-                <link>/jekyll/pixyll/2023/11/07/Beginner's-Guide-to-DevOps/</link>
+                <link>http://devopsdoor.com/jekyll/pixyll/2023/11/07/Beginner's-Guide-to-DevOps/</link>
                 <content:encoded>
                     <![CDATA[
                     <p>In the dynamic realm of software development, DevOps has emerged as a game-changing approach, revolutionizing the way teams collaborate and deliver high-quality applications. If you’re a beginner stepping into the world of DevOps, this guide is your gateway to understanding the core concepts, methodologies, and benefits of DevOps practices.</p>
@@ -92,7 +92,7 @@
         
             <item>
                 <title>Guide to Forking Pixyll</title>
-                <link>/jekyll/pixyll/2019/01/26/guide-to-forking-pixyll/</link>
+                <link>http://devopsdoor.com/jekyll/pixyll/2019/01/26/guide-to-forking-pixyll/</link>
                 <content:encoded>
                     <![CDATA[
                     <p>The following is an overview to copying and sharing Pixyll.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
@@ -188,7 +188,7 @@ Permission is hereby granted, [...]
         
             <item>
                 <title>Announcing Version 2.0</title>
-                <link>/jekyll/pixyll/2015/07/11/announcing-pixyll-version-2/</link>
+                <link>http://devopsdoor.com/jekyll/pixyll/2015/07/11/announcing-pixyll-version-2/</link>
                 <content:encoded>
                     <![CDATA[
                     <p>In an effort to make Pixyll easier to customize and more aesthetically pleasing, we’ve released version <code class="language-plaintext highlighter-rouge">2.0</code>.</p>
@@ -218,7 +218,7 @@ Permission is hereby granted, [...]
         
             <item>
                 <title>Hello, Pixyll</title>
-                <link>/jekyll/pixyll/2014/06/11/welcome-to-pixyll/</link>
+                <link>http://devopsdoor.com/jekyll/pixyll/2014/06/11/welcome-to-pixyll/</link>
                 <content:encoded>
                     <![CDATA[
                     <p>Hello.</p>
@@ -256,7 +256,7 @@ Permission is hereby granted, [...]
         
             <item>
                 <title>Pixyll in Action</title>
-                <link>/jekyll/pixyll/2014/06/10/see-pixyll-in-action/</link>
+                <link>http://devopsdoor.com/jekyll/pixyll/2014/06/10/see-pixyll-in-action/</link>
                 <content:encoded>
                     <![CDATA[
                     <p>There is a significant amount of subtle, yet precisely calibrated, styling to ensure
@@ -512,7 +512,7 @@ or add, features.</p>
         
             <item>
                 <title>So, What is Jekyll?</title>
-                <link>/jekyll/pixyll/2014/06/09/so-what-is-jekyll/</link>
+                <link>http://devopsdoor.com/jekyll/pixyll/2014/06/09/so-what-is-jekyll/</link>
                 <content:encoded>
                     <![CDATA[
                     <p>Jekyll is a tool for transforming your plain text into static websites and 
@@ -541,7 +541,7 @@ and <a href="https://en.wikipedia.org/wiki/Textile_(markup_language)">Textile</a
         
             <item>
                 <title>Pixyll has Pagination</title>
-                <link>/jekyll/pixyll/2014/06/08/pixyll-has-pagination/</link>
+                <link>http://devopsdoor.com/jekyll/pixyll/2014/06/08/pixyll-has-pagination/</link>
                 <content:encoded>
                     <![CDATA[
                     <p>This is an empty post to illustrate the pagination component with Pixyll.</p>
