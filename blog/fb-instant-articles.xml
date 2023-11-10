@@ -9,6 +9,131 @@
     
         
             <item>
+                <title>Continuous Integration and Continuous Delivery (CI/CD) with Jenkins on macOS. A Step-by-Step Guide</title>
+                <link>http://devopsdoor.com/devops/beginners/2023/11/10/Continuous-Integration-and-Continuous-Delivery/</link>
+                <content:encoded>
+                    <![CDATA[
+                    <p>Continuous Integration (CI) and Continuous Delivery (CD) are software development practices that aim to improve the development and delivery process. CI focuses on automating the integration of code changes from multiple contributors into a shared repository. On the other hand, CD extends this concept by automating the process of delivering the integrated code to production.</p>
+
+<p>The main goals of CI/CD are to increase efficiency, reduce manual errors, and deliver high-quality software at a faster pace. Jenkins, an open-source automation server, is a popular tool for implementing CI/CD pipelines.</p>
+
+<h2 id="1-simple-use-case">1. Simple Use Case</h2>
+
+<p>Let’s consider a simple use case to understand the need for CI/CD. Imagine you are working on a web application, and your team is continuously making code changes. Without CI/CD, integrating these changes manually can be time-consuming and error-prone. CI/CD helps automate this process, ensuring that the application is built, tested, and deployed consistently.</p>
+
+<h2 id="2-using-jenkins-for-cicd-on-macos">2. Using Jenkins for CI/CD on macOS</h2>
+
+<h3 id="step-1-install-jenkins">Step 1: Install Jenkins</h3>
+
+<ol>
+  <li>
+    <p>Open a terminal on your macOS.</p>
+  </li>
+  <li>
+    <p>Install Homebrew (if not already installed) by running the following command:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></p>
+  </li>
+  <li>
+    <p>Install Jenkins using Homebrew:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">brew install jenkins</code></p>
+  </li>
+  <li>
+    <p>Start the Jenkins service</p>
+
+    <p><code class="language-plaintext highlighter-rouge">brew services start jenkins</code></p>
+  </li>
+  <li>
+    <p>Access Jenkins in your browser at <a href="http://localhost:8080">http://localhost:8080</a>. Retrieve the initial admin password by running:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">cat $HOME/.jenkins/secrets/initialAdminPassword</code></p>
+  </li>
+  <li>
+    <p>Follow the Jenkins setup wizard to complete the installation. When asked, chose “Install Suggested Plugins”</p>
+  </li>
+</ol>
+
+<h3 id="step-2-create-your-first-jenkins-pipeline">Step 2: Create Your First Jenkins Pipeline</h3>
+
+<ol>
+  <li>
+    <p>Create a new pipeline:</p>
+
+    <p>Click on “New Item” on the Jenkins dashboard.
+ Enter a name for your pipeline (e.g., “MyFirstPipeline”) and select “Pipeline” as the project type.
+ Click “OK” to create the pipeline.</p>
+  </li>
+  <li>
+    <p>Configure your pipeline:</p>
+
+    <p>In the pipeline configuration, scroll down to the “Pipeline” section.
+ In the “Definition” dropdown, select “Pipeline Script” to write the pipeline script directly.</p>
+  </li>
+  <li>
+    <p>Write a simple pipeline script:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pipeline {
+ agent any
+
+ stages {
+     stage('Build') {
+         steps {
+             echo 'Building the application...'
+             // Add your build commands here. For example cd $PROJECT_FOLDER &amp;&amp; mvn build
+         }
+     }
+     stage('Test') {
+         steps {
+             echo 'Running tests...'
+             // Add your test commands here. For example, mvn test
+         }
+     }
+     stage('Deploy') {
+         steps {
+             echo 'Deploying the application...'
+             // Add your deployment commands here. For example, mvn install
+         }
+     }
+ }
+}
+</code></pre></div>    </div>
+
+    <p>Customize the script based on your project’s build, test, and deployment requirements.</p>
+  </li>
+  <li>
+    <p>Save the pipeline configuration.</p>
+  </li>
+  <li>
+    <p>Run the pipeline:</p>
+
+    <ul>
+      <li>Click on “Build Now” to trigger the pipeline manually.</li>
+      <li>Monitor the progress in the Jenkins interface and view the console output for each stage.</li>
+    </ul>
+
+    <p>Congratulations! You’ve successfully created and executed your first Jenkins pipeline on macOS. This is just a basic example, and you can extend and customize your pipeline to fit your specific project needs. CI/CD with Jenkins simplifies and automates the software development lifecycle, allowing you to deliver high-quality software efficiently.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p><a href="https://devopsdor.com">DevOps Door</a> is here to support your DevOps learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!</p>
+
+                    ]]>
+                </content:encoded>
+                <guid isPermaLink="false">/devops/beginners/2023/11/10/Continuous-Integration-and-Continuous-Delivery/</guid>
+                <description>
+                    
+                </description>
+                <pubDate>Fri, 10 Nov 2023 12:57:00 +0530</pubDate>
+                <author>Basil Varghese</author>
+            </item>
+        
+    
+        
+            <item>
                 <title>Managing Cultural Transformation in DevOps. Fostering Collaboration and Innovation</title>
                 <link>http://devopsdoor.com/devops/leaders/2023/11/09/Managing-Cultural-Transformation-in-DevOps/</link>
                 <content:encoded>
