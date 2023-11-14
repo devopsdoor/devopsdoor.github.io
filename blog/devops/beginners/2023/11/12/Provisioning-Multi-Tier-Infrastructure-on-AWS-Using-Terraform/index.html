@@ -20,7 +20,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for DevOpsDoor Blog" href="/blog/feed.xml" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/blog/css/pixyll.css?202311141254" type="text/css">
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202311141337" type="text/css">
 
     <!-- Fonts -->
     
@@ -126,15 +126,13 @@
   
   <span class="post-meta small">
   
-    5 minute read
+    6 minute read
   
   </span>
 </div>
 
 <article class="post-content">
-  <h2 id="introduction">Introduction</h2>
-
-<p>In the world of DevOps, managing infrastructure efficiently is crucial. Infrastructure as Code (IaC) tools like Terraform streamline this process by allowing the provisioning of complex architectures on cloud platforms like AWS. In this tutorial, we’ll walk through using Terraform to create a multi-tier infrastructure for hosting a sample web app on AWS, all from your Mac OS.</p>
+  <p>In the world of DevOps, managing infrastructure efficiently is crucial. Infrastructure as Code (IaC) tools like Terraform streamline this process by allowing the provisioning of complex architectures on cloud platforms like AWS. In this tutorial, we’ll walk through using Terraform to create a multi-tier infrastructure for hosting a sample web app on AWS, all from your Mac OS.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
@@ -169,12 +167,12 @@
   <li><strong>Set User Details.</strong>
     <ul>
       <li>Enter a username (e.g., <code class="language-plaintext highlighter-rouge">terraform-user</code>) for the new IAM user.</li>
-      <li>Select “Programmatic access” as the access type.</li>
+      <li>Click Next.</li>
     </ul>
   </li>
   <li><strong>Define User Permissions.</strong>
     <ul>
-      <li>Attach policies to grant necessary permissions. For this tutorial, you can attach the <code class="language-plaintext highlighter-rouge">AmazonEC2FullAccess</code> and <code class="language-plaintext highlighter-rouge">AmazonVPCFullAccess</code> policies to the user for managing EC2 and VPC resources.</li>
+      <li>Select “Attach policies directly” and Attach policies to grant necessary permissions. For this tutorial, you can attach the <code class="language-plaintext highlighter-rouge">AmazonEC2FullAccess</code> and <code class="language-plaintext highlighter-rouge">AmazonVPCFullAccess</code> policies to the user for managing EC2 and VPC resources.</li>
     </ul>
   </li>
   <li><strong>Review and Create the User.</strong>
@@ -186,6 +184,7 @@
   <li><strong>Get Access Key ID and Secret Access Key.</strong>
     <ul>
       <li>After the user is created, you’ll be prompted to download the user’s credentials (Access Key ID and Secret Access Key) as a CSV file. Ensure you save this file securely.</li>
+      <li>If you were not prompted to download credentials, click on the username you created (eg: terraform-user) &gt; Security Credentials &gt; “Create Access Key” &gt; Select “Command Line Interface (CLI)” &gt; Click Next &gt; Create Access Key &gt; Download .csv file &gt; Done</li>
     </ul>
   </li>
 </ol>
@@ -236,6 +235,7 @@ brew install terraform
 <p>To create a VPC using Terraform, define the VPC resource in your <code class="language-plaintext highlighter-rouge">main.tf</code>:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># main.tf
+# Create VPC
 
 resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
@@ -243,10 +243,21 @@ resource "aws_vpc" "my_vpc" {
     Name = "my-vpc"
   }
 }
+
+# Create an Internet Gateway
+resource "aws_internet_gateway" "my_igw" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  tags = {
+    Name = "my-internet-gateway"
+  }
+}
 </code></pre></div></div>
 
 <h3 id="define-subnets">Define Subnets</h3>
 <p>Next, create subnets within the VPC. Append below lines to the above code:</p>
+
+<p><em>NOTE: Modify the availability zones us-west-1a and us-west-1b with the desired values.</em></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># main.tf
 
@@ -298,10 +309,12 @@ resource "aws_security_group" "web_sg" {
 
 <p>Create EC2 instances for each tier. Append below lines to your code:</p>
 
+<p><em>NOTE: Modify the ami “ami-0287a05f0ef0e9d9a” with your desired ami.</em></p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># main.tf
 
 resource "aws_instance" "web_server" {
-  ami           = "ami-0c55b159cbfafe1f0"  # Specify your desired AMI
+  ami           = "ami-0287a05f0ef0e9d9a"  # Specify your desired AMI
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
   security_groups = [aws_security_group.web_sg.id]
