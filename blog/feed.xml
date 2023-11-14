@@ -7,6 +7,275 @@
     <atom:link href="http://devopsdoor.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Step-by-Step Guide. Provisioning Multi-Tier Infrastructure on AWS Using Terraform (Mac OS)</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In the world of DevOps, managing infrastructure efficiently is crucial. Infrastructure as Code (IaC) tools like Terraform streamline this process by allowing the provisioning of complex architectures on cloud platforms like AWS. In this tutorial, we’ll walk through using Terraform to create a multi-tier infrastructure for hosting a sample web app on AWS, all from your Mac OS.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;Before diving in, ensure you have the following:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;An AWS account&lt;/li&gt;
+  &lt;li&gt;Terraform installed on your Mac OS&lt;/li&gt;
+  &lt;li&gt;Basic knowledge of AWS services and Terraform&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;step-1-set-up-aws-credentials&quot;&gt;Step 1: Set Up AWS Credentials&lt;/h2&gt;
+
+&lt;p&gt;Before you start using Terraform to provision resources on AWS, you need to set up your AWS credentials on your Mac OS. Follow these steps:&lt;/p&gt;
+
+&lt;h3 id=&quot;create-access-key-and-secret-key&quot;&gt;Create Access Key and Secret Key&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Log in to the AWS Management Console.&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Navigate to IAM (Identity and Access Management).&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Go to the &lt;a href=&quot;https://console.aws.amazon.com/iam/&quot;&gt;IAM Dashboard&lt;/a&gt; in your AWS Management Console.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Access Users and Add a New User.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;From the left-hand side panel, click on “Users.”&lt;/li&gt;
+      &lt;li&gt;Click on the “Add user” button.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Set User Details.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Enter a username (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terraform-user&lt;/code&gt;) for the new IAM user.&lt;/li&gt;
+      &lt;li&gt;Select “Programmatic access” as the access type.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Define User Permissions.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Attach policies to grant necessary permissions. For this tutorial, you can attach the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AmazonEC2FullAccess&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AmazonVPCFullAccess&lt;/code&gt; policies to the user for managing EC2 and VPC resources.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Review and Create the User.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Review the user details and permissions.&lt;/li&gt;
+      &lt;li&gt;Click “Create user.”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Get Access Key ID and Secret Access Key.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;After the user is created, you’ll be prompted to download the user’s credentials (Access Key ID and Secret Access Key) as a CSV file. Ensure you save this file securely.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;configure-aws-cli-with-access-key-and-secret-key&quot;&gt;Configure AWS CLI with Access Key and Secret Key&lt;/h3&gt;
+
+&lt;p&gt;Once you have the Access Key ID and Secret Access Key:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Install AWS CLI if not already installed.&lt;/strong&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install awscli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Configure AWS CLI with your credentials.&lt;/strong&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws configure
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Enter your Access Key ID and Secret Access Key when prompted.&lt;/li&gt;
+      &lt;li&gt;Set the default region and output format as needed.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;By following these steps, you’ll create an IAM user, generate access keys, and configure the AWS CLI on your Mac OS to enable Terraform to authenticate and interact with your AWS account.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;step-2-install-terraform-on-mac-os&quot;&gt;Step 2: Install Terraform on Mac OS&lt;/h2&gt;
+
+&lt;p&gt;Download and install Terraform on your Mac OS using Homebrew.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Install Terraform via Homebrew
+brew install terraform
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-3-create-terraform-configuration-files&quot;&gt;Step 3: Create Terraform Configuration Files&lt;/h2&gt;
+
+&lt;p&gt;Organize your Terraform files for deploying the multi-tier infrastructure. Here’s a basic file structure:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;project-folder/
+│
+├── main.tf         # Main Terraform configuration
+├── variables.tf    # Variables file
+└── backend.tf      # Backend configuration (optional)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-4-define-infrastructure-components&quot;&gt;Step 4: Define Infrastructure Components&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-a-vpc-virtual-private-cloud&quot;&gt;Create a VPC (Virtual Private Cloud)&lt;/h3&gt;
+&lt;p&gt;To create a VPC using Terraform, define the VPC resource in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.tf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main.tf
+
+resource &quot;aws_vpc&quot; &quot;my_vpc&quot; {
+  cidr_block = &quot;10.0.0.0/16&quot;
+  tags = {
+    Name = &quot;my-vpc&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;define-subnets&quot;&gt;Define Subnets&lt;/h3&gt;
+&lt;p&gt;Next, create subnets within the VPC. Append below lines to the above code:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main.tf
+
+resource &quot;aws_subnet&quot; &quot;public_subnet&quot; {
+  vpc_id     = aws_vpc.my_vpc.id
+  cidr_block = &quot;10.0.1.0/24&quot;
+  availability_zone = &quot;us-west-1a&quot;
+  map_public_ip_on_launch = true
+  tags = {
+    Name = &quot;public-subnet&quot;
+  }
+}
+
+resource &quot;aws_subnet&quot; &quot;private_subnet&quot; {
+  vpc_id     = aws_vpc.my_vpc.id
+  cidr_block = &quot;10.0.2.0/24&quot;
+  availability_zone = &quot;us-west-1b&quot;
+  tags = {
+    Name = &quot;private-subnet&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;create-security-groups&quot;&gt;Create Security Groups&lt;/h3&gt;
+
+&lt;p&gt;Define security groups to control inbound and outbound traffic. Append below lines to your code:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main.tf
+
+resource &quot;aws_security_group&quot; &quot;web_sg&quot; {
+  name        = &quot;web-sg&quot;
+  description = &quot;Security group for web tier&quot;
+  vpc_id      = aws_vpc.my_vpc.id
+
+  # Define ingress and egress rules as needed
+  # Example:
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = &quot;tcp&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+  }
+}
+
+# Define security groups for other tiers (app, database) similarly
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;launch-ec2-instances-web-tier&quot;&gt;Launch EC2 Instances (Web Tier)&lt;/h3&gt;
+
+&lt;p&gt;Create EC2 instances for each tier. Append below lines to your code:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main.tf
+
+resource &quot;aws_instance&quot; &quot;web_server&quot; {
+  ami           = &quot;ami-0c55b159cbfafe1f0&quot;  # Specify your desired AMI
+  instance_type = &quot;t2.micro&quot;
+  subnet_id     = aws_subnet.public_subnet.id
+  security_groups = [aws_security_group.web_sg.id]
+
+  # Add user data to install Nginx and serve a sample page
+  user_data = &amp;lt;&amp;lt;-EOF
+              #!/bin/bash
+              yum update -y
+              yum install nginx -y
+              echo &quot;&amp;lt;h1&amp;gt;Welcome to my web server!&amp;lt;/h1&amp;gt;&quot; &amp;gt; /usr/share/nginx/html/index.html
+              service nginx start
+              EOF
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;set-up-load-balancers&quot;&gt;Set Up Load Balancers&lt;/h3&gt;
+
+&lt;p&gt;Define load balancers to distribute incoming traffic. Append below lines to your code:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main.tf
+
+resource &quot;aws_lb&quot; &quot;my_lb&quot; {
+  name               = &quot;my-load-balancer&quot;
+  internal           = false
+  load_balancer_type = &quot;application&quot;
+  subnets            = [aws_subnet.public_subnet.id]
+
+  enable_deletion_protection = false
+
+  # Add listeners, target groups, and other configurations as needed
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;VPC:&lt;/strong&gt; Defines the Virtual Private Cloud network with a specified CIDR block.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Subnets:&lt;/strong&gt; Creates public and private subnets within the VPC across different availability zones.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Security Groups:&lt;/strong&gt; Defines rules to control inbound and outbound traffic for different tiers (e.g., web, app, database).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EC2 Instances:&lt;/strong&gt; Launches an EC2 instance for the web tier, installs Nginx, and serves a sample webpage.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Load Balancers:&lt;/strong&gt; Sets up a load balancer to distribute traffic among EC2 instances.&lt;/p&gt;
+
+&lt;p&gt;By following these steps and running Terraform, you’ll create a multi-tier infrastructure on AWS, complete with VPC, subnets, security groups, EC2 instances, and a load balancer, ready to serve a sample web page using Nginx.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-5-define-variables-optional&quot;&gt;Step 5: Define Variables (Optional)&lt;/h2&gt;
+
+&lt;p&gt;Utilize the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;variables.tf&lt;/code&gt; file to declare variables for the infrastructure components to ensure flexibility and reusability.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-6-initialize-terraform-and-plan-deployment&quot;&gt;Step 6: Initialize Terraform and Plan Deployment&lt;/h2&gt;
+
+&lt;p&gt;Initialize the Terraform configuration and check the plan before applying changes.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Initialize Terraform in your project directory
+terraform init
+
+# Check the execution plan
+terraform plan
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-7-apply-changes&quot;&gt;Step 7: Apply Changes&lt;/h2&gt;
+
+&lt;p&gt;Apply the Terraform changes to create the infrastructure on AWS.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Apply changes to provision infrastructure
+terraform apply
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-8-test-the-infrastructure&quot;&gt;Step 8: Test the Infrastructure&lt;/h2&gt;
+
+&lt;p&gt;After successful deployment, test the infrastructure:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Access deployed resources (e.g., web app)&lt;/li&gt;
+  &lt;li&gt;Perform basic functionality tests&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations! You’ve successfully provisioned a multi-tier infrastructure on AWS using Terraform on your Mac OS. This tutorial provides a foundation for DevOps enthusiasts seeking hands-on experience with infrastructure as code.&lt;/p&gt;
+
+&lt;p&gt;Expand upon this setup, experiment with different AWS services, or enhance your Terraform skills to further optimize your infrastructure deployment process.&lt;/p&gt;
+
+&lt;p&gt;Happy coding and automating with Terraform!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://devopsdor.com&quot;&gt;DevOps Door&lt;/a&gt; is here to support your DevOps learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Nov 2023 12:57:00 +0530</pubDate>
+        <link>http://devopsdoor.com/blog/devops/beginners/2023/11/12/Provisioning-Multi-Tier-Infrastructure-on-AWS-Using-Terraform/</link>
+        <guid isPermaLink="true">http://devopsdoor.com/blog/devops/beginners/2023/11/12/Provisioning-Multi-Tier-Infrastructure-on-AWS-Using-Terraform/</guid>
+      </item>
+    
+      <item>
         <title>Continuous Integration and Continuous Delivery (CI/CD) with Jenkins on macOS. A Step-by-Step Guide</title>
         <description>&lt;p&gt;Continuous Integration (CI) and Continuous Delivery (CD) are software development practices that aim to improve the development and delivery process. CI focuses on automating the integration of code changes from multiple contributors into a shared repository. On the other hand, CD extends this concept by automating the process of delivering the integrated code to production.&lt;/p&gt;
 
@@ -117,8 +386,8 @@
 &lt;p&gt;&lt;a href=&quot;https://devopsdor.com&quot;&gt;DevOps Door&lt;/a&gt; is here to support your DevOps learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!&lt;/p&gt;
 </description>
         <pubDate>Fri, 10 Nov 2023 12:57:00 +0530</pubDate>
-        <link>http://devopsdoor.com/blog/devops/beginners/2023/11/10/Continuous-Integration-and-Continuous-Delivery/</link>
-        <guid isPermaLink="true">http://devopsdoor.com/blog/devops/beginners/2023/11/10/Continuous-Integration-and-Continuous-Delivery/</guid>
+        <link>http://devopsdoor.com/blog/devops/beginners/2023/11/10/Continuous-Integration-and-Continuous-Delivery-copy/</link>
+        <guid isPermaLink="true">http://devopsdoor.com/blog/devops/beginners/2023/11/10/Continuous-Integration-and-Continuous-Delivery-copy/</guid>
       </item>
     
       <item>
