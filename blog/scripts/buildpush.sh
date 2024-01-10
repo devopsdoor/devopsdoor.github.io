@@ -5,6 +5,7 @@ DEVOPSDOOR_HOME="/Users/basil/projects/devopsdoor.github.io"
 BLOG_URL="blog"
 bundle exec jekyll build
 cp -prf _site/* $DEVOPSDOOR_HOME/$BLOG_URL
+rm $DEVOPSDOOR_HOME/$BLOG_URL/robots.txt
 cd $DEVOPSDOOR_HOME
 git add $BLOG_URL
 git commit -m "$LATEST_BLOG"
