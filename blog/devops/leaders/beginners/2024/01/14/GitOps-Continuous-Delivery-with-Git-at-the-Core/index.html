@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GitOps; Continuous Delivery with Git at the Core &#8211; DevOpsDoor Blog</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Blog By DevOps Door.">
+    <link rel="manifest" type="application/manifest+json; charset=utf-8" href="/blog/manifest.json" />
+    <meta name="robots" content="all">
+    <meta name="author" content="Basil Varghese">
+    
+    <meta name="keywords" content="DevOps, Leaders, Beginners">
+    <link rel="canonical" href="http://devopsdoor.com/blog/devops/leaders/beginners/2024/01/14/GitOps-Continuous-Delivery-with-Git-at-the-Core/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for DevOpsDoor Blog" href="/blog/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202401202053" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="GitOps; Continuous Delivery with Git at the Core">
+    <meta property="og:description" content="A Blog By DevOps Door.">
+    <meta property="og:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/01/14/GitOps-Continuous-Delivery-with-Git-at-the-Core/">
+    <meta property="og:site_name" content="DevOpsDoor Blog">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="GitOps; Continuous Delivery with Git at the Core" />
+    <meta name="twitter:description" content="A Blog By DevOps Door." />
+    <meta name="twitter:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/01/14/GitOps-Continuous-Delivery-with-Git-at-the-Core/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/blog/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/blog/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/blog/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/blog/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/blog/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/blog/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/blog/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/blog/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/blog/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/blog/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/blog/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6MMB5LW8T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6MMB5LW8T');
+  </script>
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/blog/" class="site-title">DevOpsDoor Blog</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/about/">About DevOpsDoor</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/contact/">Contact Us</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>GitOps; Continuous Delivery with Git at the Core</h1>
+  <span class="post-meta">Jan 14, 2024</span><br>
+  
+  <span class="post-meta small">
+  
+    3 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>Welcome to the definitive guide on GitOps, a paradigm that puts Git at the center of your continuous delivery pipeline. In this comprehensive exploration, we’ll delve into the key principles, practices, and tools that define GitOps and empower organizations to achieve robust and automated software delivery.</p>
+
+<h2 id="understanding-gitops">Understanding GitOps</h2>
+
+<p>GitOps is a modern approach to continuous delivery that leverages Git as the single source of truth for declarative infrastructure and application code. The core idea is to use Git repositories as the source of authority for defining and managing the desired state of your system.</p>
+
+<h2 id="key-principles-of-gitops-implementation">Key Principles of GitOps Implementation</h2>
+
+<h3 id="1-declarative-configuration-in-git">1. <strong>Declarative Configuration in Git</strong></h3>
+
+<p>Adopt a declarative approach by storing configuration files, including infrastructure and application definitions, in Git repositories. This approach enables versioning, auditability, and collaboration, making the entire system’s state explicit and traceable.</p>
+
+<h3 id="2-automated-operations-with-git-based-workflows">2. <strong>Automated Operations with Git-based Workflows</strong></h3>
+
+<p>Define desired system states in Git and leverage automated workflows to reconcile the actual state with the declared state. GitOps workflows, driven by tools like ArgoCD or FluxCD, automate deployment, scaling, and rollback processes based on Git repository changes.</p>
+
+<h3 id="3-immutable-infrastructure">3. <strong>Immutable Infrastructure</strong></h3>
+
+<p>Embrace the concept of immutable infrastructure, where changes to infrastructure and application code result in the creation of new, immutable artifacts. This ensures consistency, simplifies rollbacks, and enhances the overall reliability of deployments.</p>
+
+<h2 id="best-practices-for-gitops">Best Practices for GitOps</h2>
+
+<h3 id="1-infrastructure-as-code-iac-in-git">1. <strong>Infrastructure as Code (IaC) in Git</strong></h3>
+
+<p>Manage infrastructure configurations as code in Git repositories. Tools like Terraform or Kubernetes manifests stored in Git enable teams to version control infrastructure changes, facilitating collaboration and reproducibility.</p>
+
+<h3 id="2-git-branching-strategies-for-environments">2. <strong>Git Branching Strategies for Environments</strong></h3>
+
+<p>Leverage Git branching strategies to manage different environments (e.g., development, staging, production). GitOps enables consistent environment promotion through branch-based workflows, ensuring a smooth and auditable deployment process.</p>
+
+<h3 id="3-git-based-access-controls-and-auditing">3. <strong>Git-based Access Controls and Auditing</strong></h3>
+
+<p>Leverage Git’s built-in access controls to manage permissions for GitOps repositories. Regularly audit and review changes to the Git repositories to ensure compliance, security, and transparency in the deployment process.</p>
+
+<h2 id="common-challenges-and-mitigations">Common Challenges and Mitigations</h2>
+
+<h3 id="1-handling-secrets-in-gitops">1. <strong>Handling Secrets in GitOps</strong></h3>
+
+<p>Effectively manage secrets by leveraging tools like HashiCorp Vault or sealed-secrets, ensuring secure and auditable handling of sensitive information within GitOps workflows.</p>
+
+<h3 id="2-rollbacks-and-roll-forwards">2. <strong>Rollbacks and Roll-forwards</strong></h3>
+
+<p>Navigate the challenges of rollbacks by embracing a roll-forward mindset. GitOps enables easy rollbacks to a previous known state by reverting changes in Git, but it’s equally important to have a forward-looking strategy to address and fix issues.</p>
+
+<h3 id="3-monitoring-and-observability-in-gitops">3. <strong>Monitoring and Observability in GitOps</strong></h3>
+
+<p>Integrate monitoring tools like Prometheus and Grafana to gain visibility into the health and performance of your GitOps-managed systems. Effective observability ensures timely detection and resolution of issues.</p>
+
+<h3 id="4-workflow-challenges-in-cicd">4. <strong>Workflow Challenges in CI/CD</strong></h3>
+
+<p>Mitigate workflow challenges, especially in CI/CD, by incorporating tools like Argo Workflows. These tools streamline and automate complex workflows, enhancing the overall efficiency of continuous integration and delivery processes.</p>
+
+<h3 id="5-security-in-gitops">5. <strong>Security in GitOps</strong></h3>
+
+<p>Prioritize security by implementing robust access controls, regular audits, and continuous monitoring of Git repositories. Embrace security-focused GitOps practices to ensure the integrity and confidentiality of your delivery pipeline.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>GitOps provides a powerful framework for organizations to achieve continuous delivery with Git as the core orchestrator. By following the key principles, best practices, and addressing common challenges, teams can streamline deployment processes, enhance collaboration, and increase the overall reliability of their systems.</p>
+
+<h2 id="about-the-author">About the Author</h2>
+<p>Hello! I’m Basil Varghese, a seasoned DevOps professional with 16+ years in the industry. As a speaker at conferences like Hashitalks: India, I share insights into cutting-edge DevOps practices. With over 8 years of training experience, I am passionate about empowering the next generation of IT professionals.</p>
+
+<p>In my previous role at Akamai, I served as an ex-liaison, fostering collaboration. I founded Doorward Technologies, which became a winner in the Hitachi Appathon, showcasing our commitment to innovation.</p>
+
+<p>Let’s navigate the dynamic world of DevOps together! Connect with me on <a href="https://www.linkedin.com/in/basilv7/">LinkedIn</a> for the latest trends and insights.</p>
+
+<hr />
+<p><a href="https://devopsdoor.com">DevOps Door</a> is here to support your DevOps and SRE learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      DevOps Door.
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/blog/sw.js")
+    }
+</script>
+
+</body>
+</html>
