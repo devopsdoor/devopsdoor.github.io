@@ -8,6 +8,6 @@ cp -prf _site/* $DEVOPSDOOR_HOME/$BLOG_URL
 rm $DEVOPSDOOR_HOME/$BLOG_URL/robots.txt
 cd $DEVOPSDOOR_HOME
 cp -prf $BLOG_URL/sitemap.xml ./
-git add $BLOG_URL
+git add $BLOG_URL sitemap.xml
 git commit -m "$LATEST_BLOG"
 git push origin main
