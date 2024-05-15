@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Implementing SRE Best Practices on Linux Servers &#8211; DevOpsDoor Blog</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Blog By DevOps Door.">
+    <link rel="manifest" type="application/manifest+json; charset=utf-8" href="/blog/manifest.json" />
+    <meta name="robots" content="all">
+    <meta name="author" content="Basil Varghese">
+    
+    <meta name="keywords" content="DevOps, Leaders, Beginners">
+    <link rel="canonical" href="http://devopsdoor.com/blog/devops/leaders/beginners/2024/05/01/Implementing-SRE-Best-Practices-on-Linux/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for DevOpsDoor Blog" href="/blog/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202405151751" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Implementing SRE Best Practices on Linux Servers">
+    <meta property="og:description" content="A Blog By DevOps Door.">
+    <meta property="og:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/01/Implementing-SRE-Best-Practices-on-Linux/">
+    <meta property="og:site_name" content="DevOpsDoor Blog">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Implementing SRE Best Practices on Linux Servers" />
+    <meta name="twitter:description" content="A Blog By DevOps Door." />
+    <meta name="twitter:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/01/Implementing-SRE-Best-Practices-on-Linux/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/blog/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/blog/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/blog/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/blog/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/blog/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/blog/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/blog/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/blog/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/blog/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/blog/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/blog/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6MMB5LW8T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6MMB5LW8T');
+  </script>
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/blog/" class="site-title">DevOpsDoor Blog</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/about/">About DevOpsDoor</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/contact/">Contact Us</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Implementing SRE Best Practices on Linux Servers</h1>
+  <span class="post-meta">May 1, 2024</span><br>
+  
+  <span class="post-meta small">
+  
+    5 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>Site Reliability Engineering (SRE) combines software engineering with IT operations to create reliable systems. For Linux servers, using SRE best practices is crucial to maintain performance and reliability. This article will cover advanced SRE practices, including error budgets, SLIs/SLOs, and how to set up a strong monitoring and alerting system using Prometheus and Grafana.</p>
+
+<h2 id="understanding-sre-best-practices">Understanding SRE Best Practices</h2>
+
+<h3 id="error-budgets">Error Budgets</h3>
+
+<p>An error budget is the maximum acceptable amount of downtime or failure a system can have. It helps balance the need for reliability with the need to release new features quickly.</p>
+
+<h3 id="slis-service-level-indicators-and-slos-service-level-objectives">SLIs (Service Level Indicators) and SLOs (Service Level Objectives)</h3>
+
+<p><strong>Service Level Indicators (SLIs)</strong> are metrics that measure how well a service is performing. Examples include uptime, error rates, and response time.</p>
+
+<p><strong>Service Level Objectives (SLOs)</strong> are specific goals for these metrics. For example, an SLO might state that 99.9% of HTTP requests should be successful within a certain response time.</p>
+
+<h3 id="why-these-metrics-are-important">Why These Metrics Are Important</h3>
+
+<p>SLIs and SLOs help measure and manage system reliability. By tracking these metrics, teams can ensure their systems meet performance standards and stay within the error budget.</p>
+
+<h2 id="implementing-sre-practices-on-linux-servers">Implementing SRE Practices on Linux Servers</h2>
+
+<h3 id="setting-up-slis-and-slos-for-linux-environments">Setting Up SLIs and SLOs for Linux Environments</h3>
+
+<ol>
+  <li><strong>Define SLIs</strong>: Identify key performance metrics for your Linux servers. Common SLIs include CPU usage, memory usage, disk I/O, and network latency.</li>
+  <li><strong>Set SLOs</strong>: Set specific targets for each SLI. For example, aim for 99.9% uptime or keep CPU usage below 75%.</li>
+</ol>
+
+<h3 id="monitoring-system-performance-and-availability">Monitoring System Performance and Availability</h3>
+
+<p>Regular monitoring helps track how your Linux servers are performing. This involves collecting and analyzing data to ensure they meet the SLOs.</p>
+
+<h3 id="tools-and-techniques-for-tracking-error-budgets">Tools and Techniques for Tracking Error Budgets</h3>
+
+<p>Use monitoring tools to track your error budget. By analyzing past performance data, you can predict and prevent potential issues before they affect users.</p>
+
+<h2 id="setting-up-a-strong-monitoring-and-alerting-system">Setting Up a Strong Monitoring and Alerting System</h2>
+
+<h3 id="introduction-to-prometheus-and-grafana">Introduction to Prometheus and Grafana</h3>
+
+<p><strong>Prometheus</strong> is an open-source tool for monitoring and alerting. <strong>Grafana</strong> is an open-source tool for visualizing metrics collected by Prometheus.</p>
+
+<h3 id="step-by-step-guide-to-installing-and-configuring-prometheus-on-a-linux-server">Step-by-Step Guide to Installing and Configuring Prometheus on a Linux Server</h3>
+
+<ol>
+  <li>
+    <p><strong>Install Prometheus</strong>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash
+wget https://github.com/prometheus/prometheus/releases/download/v2.29.1/prometheus-2.29.1.linux-amd64.tar.gz
+
+tar xvfz prometheus-*.tar.gz
+
+cd prometheus-*
+
+./prometheus --config.file=prometheus.yml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Configure Prometheus</strong>:</p>
+
+    <p>Edit the <code class="language-plaintext highlighter-rouge">prometheus.yml</code> file to define your monitoring targets:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> global:
+ scrape_interval: 15s
+ scrape_configs:
+ - job_name: 'linux'
+     static_configs:
+     - targets: ['localhost:9090']
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Start Prometheus</strong>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./prometheus --config.file=prometheus.yml
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="setting-up-grafana-for-visualizing-prometheus-metrics">Setting Up Grafana for Visualizing Prometheus Metrics</h3>
+
+<ol>
+  <li>
+    <p><strong>Install Grafana</strong>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo apt-get update
+ sudo apt-get install -y software-properties-common
+ sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+ sudo apt-get update
+ sudo apt-get install grafana
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Start Grafana</strong>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo systemctl start grafana-server
+ sudo systemctl enable grafana-server.service
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Configure Grafana</strong>:</p>
+
+    <ol>
+      <li>Open Grafana in your web browser at http://localhost:3000.</li>
+      <li>Login with the default credentials (admin / admin), then change the password.</li>
+      <li>Add Prometheus as a data source:
+        <ul>
+          <li>Click “Add data source”.</li>
+          <li>Select “Prometheus”.</li>
+          <li>Enter the Prometheus server URL (http://localhost:9090).</li>
+          <li>Click “Save &amp; Test” to confirm the connection.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="creating-custom-dashboards-for-sre-metrics">Creating Custom Dashboards for SRE Metrics</h3>
+
+<ol>
+  <li>
+    <p>Create a New Dashboard:</p>
+
+    <ul>
+      <li>Click the “+” icon, then select “Dashboard”.</li>
+      <li>Click “Add new panel”.</li>
+    </ul>
+  </li>
+  <li>Add Panels:
+    <ul>
+      <li>Define your queries to fetch data from Prometheus. For CPU usage, use the query:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  node_cpu_seconds_total{mode="idle"}
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Repeat for Other Metrics:
+    <ul>
+      <li>Add panels for metrics like memory usage, disk I/O, and network latency.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="setting-up-alerting-rules-and-notifications">Setting Up Alerting Rules and Notifications</h3>
+
+<ol>
+  <li>Create Alerting Rules in Prometheus
+    <ul>
+      <li>
+        <p>Edit the <code class="language-plaintext highlighter-rouge">prometheus.yml</code> file to add alerting rules:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  rule_files:
+  - "alert.rules.yml"
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Create the alert.rules.yml file:</p>
+      </li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> groups:
+ - name: example
+ rules:
+ - alert: HighCPUUsage
+     expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) &gt; 75
+     for: 5m
+     labels:
+     severity: critical
+     annotations:
+     summary: "High CPU usage detected"
+     description: "CPU usage is above 75% for more than 5 minutes."
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Configure Alertmanager:</p>
+
+    <ul>
+      <li>
+        <p>Download and install Alertmanager:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  wget https://github.com/prometheus/alertmanager/releases/download/v0.22.2/alertmanager-0.22.2.linux-amd64.tar.gz
+  tar xvfz alertmanager-*.tar.gz
+  cd alertmanager-*
+  ./alertmanager --config.file=alertmanager.yml
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Configure alertmanager.yml:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  global:
+  resolve_timeout: 5m
+  route:
+  receiver: 'email-alert'
+  receivers:
+  - name: 'email-alert'
+  email_configs:
+  - to: 'you@example.com'
+      from: 'alertmanager@example.com'
+      smarthost: 'smtp.example.com:587'
+      auth_username: 'alertmanager@example.com'
+      auth_password: 'yourpassword'
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="real-world-examples-and-case-studies">Real-World Examples and Case Studies</h3>
+
+<h4 id="real-world-examples-of-implementing-sre-practices-on-linux-servers">Real-World Examples of Implementing SRE Practices on Linux Servers</h4>
+
+<ol>
+  <li>
+    <p>Example 1: Managing CPU Spikes</p>
+
+    <ul>
+      <li>A large e-commerce platform needed to monitor CPU usage. Using Prometheus and Grafana, the team set up alerts for CPU spikes, allowing them to quickly address performance issues during peak times.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Example 2: Memory Leak Detection</p>
+
+    <ul>
+      <li>A financial services company faced memory leaks in their applications. Prometheus tracked memory usage over time, and Grafana visualized the data, helping the team identify and fix the leaks.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="case-studies-of-successful-monitoring-and-alerting-setups">Case Studies of Successful Monitoring and Alerting Setups</h4>
+
+<ol>
+  <li>
+    <p>Case Study 1: Enhancing Reliability in a Microservices Architecture</p>
+
+    <ul>
+      <li>A tech startup used microservices across multiple Linux servers. With Prometheus and Grafana, they monitored service communication, error rates, and latency, maintaining high reliability and quickly identifying issues.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Case Study 2: Scaling Infrastructure with Terraform and Kubernetes</p>
+
+    <ul>
+      <li>An enterprise IT department used Terraform for infrastructure as code and Kubernetes for container management. Integrating Prometheus and Grafana, they monitored resource usage and system health, enabling efficient scaling while meeting SLOs.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>Implementing SRE best practices on Linux servers helps maintain system reliability and performance. By understanding and applying concepts like error budgets, SLIs, and SLOs, and using tools like Prometheus and Grafana, teams can effectively monitor and manage their systems. These practices not only help maintain high availability but also address potential issues before they impact users.</p>
+
+<p>For a deeper dive into these topics and hands-on experience, consider joining our Advanced DevOps training program, where we explore these concepts and tools in detail, preparing you to manage large-scale production environments with confidence.</p>
+
+<h2 id="about-the-author">About the Author</h2>
+<p>Hello! I’m Basil Varghese, a seasoned DevOps professional with 16+ years in the industry. As a speaker at conferences like Hashitalks: India, I share insights into cutting-edge DevOps practices. With over 8 years of training experience, I am passionate about empowering the next generation of IT professionals.</p>
+
+<p>In my previous role at Akamai, I served as an ex-liaison, fostering collaboration. I founded Doorward Technologies, which became a winner in the Hitachi Appathon, showcasing our commitment to innovation.</p>
+
+<p>Let’s navigate the dynamic world of DevOps together! Connect with me on <a href="https://www.linkedin.com/in/basilv7/">LinkedIn</a> for the latest trends and insights.</p>
+
+<hr />
+<p><a href="https://devopsdoor.com">DevOps Door</a> is here to support your DevOps and SRE learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      DevOps Door.
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/blog/sw.js")
+    }
+</script>
+
+</body>
+</html>

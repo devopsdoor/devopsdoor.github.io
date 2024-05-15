@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Automating Incident Response with Kubernetes and Prometheus &#8211; DevOpsDoor Blog</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Blog By DevOps Door.">
+    <link rel="manifest" type="application/manifest+json; charset=utf-8" href="/blog/manifest.json" />
+    <meta name="robots" content="all">
+    <meta name="author" content="Basil Varghese">
+    
+    <meta name="keywords" content="DevOps, Leaders, Beginners">
+    <link rel="canonical" href="http://devopsdoor.com/blog/devops/leaders/beginners/2024/05/02/Automating-Incident-Response/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for DevOpsDoor Blog" href="/blog/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202405151751" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Automating Incident Response with Kubernetes and Prometheus">
+    <meta property="og:description" content="A Blog By DevOps Door.">
+    <meta property="og:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/02/Automating-Incident-Response/">
+    <meta property="og:site_name" content="DevOpsDoor Blog">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Automating Incident Response with Kubernetes and Prometheus" />
+    <meta name="twitter:description" content="A Blog By DevOps Door." />
+    <meta name="twitter:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/02/Automating-Incident-Response/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/blog/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/blog/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/blog/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/blog/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/blog/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/blog/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/blog/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/blog/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/blog/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/blog/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/blog/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6MMB5LW8T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6MMB5LW8T');
+  </script>
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/blog/" class="site-title">DevOpsDoor Blog</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/about/">About DevOpsDoor</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/contact/">Contact Us</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Automating Incident Response with Kubernetes and Prometheus</h1>
+  <span class="post-meta">May 2, 2024</span><br>
+  
+  <span class="post-meta small">
+  
+    5 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>In today’s fast-paced IT environments, automating incident response is crucial for maintaining system reliability and performance. This article provides a step-by-step guide on setting up automated incident response mechanisms using Kubernetes and Prometheus Alertmanager, along with use case examples from large-scale production environments.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Incident response automation is essential for minimizing downtime and ensuring system stability. Kubernetes, Prometheus, and Prometheus Alertmanager are powerful tools that can help automate this process effectively.</p>
+
+<h2 id="understanding-the-components">Understanding the Components</h2>
+
+<h3 id="kubernetes">Kubernetes</h3>
+
+<p>Kubernetes is an open-source platform for automating deployment, scaling, and operations of application containers across clusters of hosts. It helps manage containerized applications in various environments, ensuring that they run smoothly and reliably.</p>
+
+<h3 id="prometheus">Prometheus</h3>
+
+<p>Prometheus is an open-source monitoring and alerting toolkit designed for reliability and scalability. It collects and stores metrics as time series data, allowing users to set up robust monitoring systems.</p>
+
+<h3 id="alertmanager">Alertmanager</h3>
+
+<p>Alertmanager handles alerts sent by client applications such as Prometheus. It manages alerts, including deduplication, grouping, and routing to the correct receiver integration like email, PagerDuty, or Slack.</p>
+
+<h2 id="step-by-step-guide-to-setting-up-automated-incident-response">Step-by-Step Guide to Setting Up Automated Incident Response</h2>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+  <li>A Kubernetes cluster</li>
+  <li>Prometheus installed and configured in the cluster</li>
+  <li>Alertmanager installed and configured</li>
+</ul>
+
+<h3 id="step-1-setting-up-prometheus">Step 1: Setting Up Prometheus</h3>
+
+<ol>
+  <li>
+    <p><strong>Install Prometheus</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Create a <code class="language-plaintext highlighter-rouge">prometheus.yaml</code> configuration file:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">global</span><span class="pi">:</span>
+  <span class="na">scrape_interval</span><span class="pi">:</span> <span class="s">15s</span>
+<span class="na">scrape_configs</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">job_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">kubernetes-apiservers'</span>
+    <span class="na">kubernetes_sd_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">role</span><span class="pi">:</span> <span class="s">endpoints</span>
+    <span class="na">relabel_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">source_labels</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">__meta_kubernetes_namespace</span><span class="pi">,</span> <span class="nv">__meta_kubernetes_service_name</span><span class="pi">,</span> <span class="nv">__meta_kubernetes_endpoint_port_name</span><span class="pi">]</span>
+        <span class="na">action</span><span class="pi">:</span> <span class="s">keep</span>
+        <span class="na">regex</span><span class="pi">:</span> <span class="s">default;kubernetes;https</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Deploy Prometheus in Kubernetes</strong>:</p>
+
+    <ul>
+      <li>Use the following <code class="language-plaintext highlighter-rouge">prometheus-deployment.yaml</code> file:
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">prometheus-deployment</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">prometheus</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">prometheus</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">prometheus</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">prom/prometheus</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">9090</span>
+        <span class="na">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/prometheus</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">storage-volume</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/prometheus</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+        <span class="na">configMap</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">prometheus-config</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">storage-volume</span>
+        <span class="na">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Apply the Deployment</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> prometheus-deployment.yaml
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-2-setting-up-alertmanager-and-beyond">Step 2: Setting Up Alertmanager and Beyond</h3>
+
+<ol>
+  <li>
+    <p><strong>Create Alertmanager Configuration</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Create an <code class="language-plaintext highlighter-rouge">alertmanager.yaml</code> configuration file:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">global</span><span class="pi">:</span>
+  <span class="na">resolve_timeout</span><span class="pi">:</span> <span class="s">5m</span>
+<span class="na">route</span><span class="pi">:</span>
+  <span class="na">group_by</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">alertname'</span><span class="pi">]</span>
+  <span class="na">group_wait</span><span class="pi">:</span> <span class="s">30s</span>
+  <span class="na">group_interval</span><span class="pi">:</span> <span class="s">5m</span>
+  <span class="na">repeat_interval</span><span class="pi">:</span> <span class="s">1h</span>
+  <span class="na">receiver</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slack-notifications'</span>
+<span class="na">receivers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">slack-notifications'</span>
+    <span class="na">slack_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">send_resolved</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">channel</span><span class="pi">:</span> <span class="s1">'</span><span class="s">#alerts'</span>
+        <span class="na">api_url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'</span>
+        <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        <span class="na">text</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Deploy Alertmanager in Kubernetes</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Use the following <code class="language-plaintext highlighter-rouge">alertmanager-deployment.yaml</code> file:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">alertmanager-deployment</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">alertmanager</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">alertmanager</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">alertmanager</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">prom/alertmanager</span>
+        <span class="na">args</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s2">"</span><span class="s">--config.file=/etc/alertmanager/alertmanager.yaml"</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">9093</span>
+        <span class="na">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+          <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/alertmanager</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">config-volume</span>
+        <span class="na">configMap</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">alertmanager-config</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Apply the Deployment</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> alertmanager-deployment.yaml
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-3-configuring-prometheus-to-use-alertmanager-and-beyond">Step 3: Configuring Prometheus to Use Alertmanager and Beyond</h3>
+
+<ol>
+  <li>
+    <p><strong>Update Prometheus Configuration</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Edit the <code class="language-plaintext highlighter-rouge">prometheus.yaml</code> file to include Alertmanager configuration:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">alerting</span><span class="pi">:</span>
+  <span class="na">alertmanagers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">static_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">targets</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">alertmanager:9093</span>
+<span class="na">rule_files</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">alert.rules"</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Create Alerting Rules</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Create an <code class="language-plaintext highlighter-rouge">alert.rules</code> file with your alerting rules:</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">groups</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">example</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">alert</span><span class="pi">:</span> <span class="s">HighCPUUsage</span>
+    <span class="na">expr</span><span class="pi">:</span> <span class="s">100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) &gt; </span><span class="m">80</span>
+    <span class="na">for</span><span class="pi">:</span> <span class="s">5m</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">severity</span><span class="pi">:</span> <span class="s">critical</span>
+    <span class="na">annotations</span><span class="pi">:</span>
+      <span class="na">summary</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High</span><span class="nv"> </span><span class="s">CPU</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">detected"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CPU</span><span class="nv"> </span><span class="s">usage</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">above</span><span class="nv"> </span><span class="s">80%</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">more</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">minutes."</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Apply the Updated Configuration</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> prometheus-config.yaml
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-4-testing-the-setup">Step 4: Testing the Setup</h3>
+
+<ol>
+  <li>
+    <p><strong>Trigger an Alert</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Simulate high CPU usage to trigger the alert:</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   stress <span class="nt">--cpu</span> 8 <span class="nt">--timeout</span> 600
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Check Alertmanager</strong>:</p>
+
+    <ul>
+      <li>Verify that the alert appears in Alertmanager and a notification is sent to Slack.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="use-case-examples-from-large-scale-production-environments">Use Case Examples from Large-Scale Production Environments</h2>
+
+<h3 id="example-1-e-commerce-platform">Example 1: E-commerce Platform</h3>
+
+<p>An e-commerce platform with thousands of daily transactions uses Kubernetes and Prometheus for automated incident response. When the system detects high memory usage, Prometheus triggers an alert. Alertmanager then notifies the on-call engineer via Slack and PagerDuty, allowing for quick resolution before customers are affected.</p>
+
+<h3 id="example-2-financial-services">Example 2: Financial Services</h3>
+
+<p>A financial services company uses Kubernetes to manage its microservices architecture. Prometheus monitors key metrics like transaction latency and error rates. When an SLO is breached, Alertmanager sends notifications and triggers automated rollback procedures, ensuring minimal disruption to services.</p>
+
+<h3 id="example-3-saas-provider">Example 3: SaaS Provider</h3>
+
+<p>A SaaS provider leverages Prometheus and Alertmanager to maintain high availability. Custom alerting rules are set up for different microservices. When an issue arises, Alertmanager groups similar alerts and routes them to the appropriate engineering team via email and Slack, ensuring efficient incident handling.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Automating incident response with Kubernetes and Prometheus helps maintain system reliability and performance. By following the steps outlined in this guide, you can set up robust monitoring and alerting systems that automatically respond to incidents, reducing downtime and improving overall efficiency.</p>
+
+<p>For further insights and hands-on experience, consider joining our Advanced DevOps training program, where we delve deeper into these topics and provide practical experience managing large-scale production environments.</p>
+
+<hr />
+
+<p>This article provides an in-depth, step-by-step guide to automating incident response using Kubernetes and Prometheus, offering practical examples and ensuring it is both informative and actionable for Linux users familiar with DevOps concepts.</p>
+
+<h2 id="about-the-author">About the Author</h2>
+<p>Hello! I’m Basil Varghese, a seasoned DevOps professional with 16+ years in the industry. As a speaker at conferences like Hashitalks: India, I share insights into cutting-edge DevOps practices. With over 8 years of training experience, I am passionate about empowering the next generation of IT professionals.</p>
+
+<p>In my previous role at Akamai, I served as an ex-liaison, fostering collaboration. I founded Doorward Technologies, which became a winner in the Hitachi Appathon, showcasing our commitment to innovation.</p>
+
+<p>Let’s navigate the dynamic world of DevOps together! Connect with me on <a href="https://www.linkedin.com/in/basilv7/">LinkedIn</a> for the latest trends and insights.</p>
+
+<hr />
+<p><a href="https://devopsdoor.com">DevOps Door</a> is here to support your DevOps and SRE learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      DevOps Door.
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/blog/sw.js")
+    }
+</script>
+
+</body>
+</html>
