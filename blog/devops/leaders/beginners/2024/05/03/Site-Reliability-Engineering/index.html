@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Site Reliability Engineering - Ensuring High Availability and Resilience &#8211; DevOpsDoor Blog</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Blog By DevOps Door.">
+    <link rel="manifest" type="application/manifest+json; charset=utf-8" href="/blog/manifest.json" />
+    <meta name="robots" content="all">
+    <meta name="author" content="Basil Varghese">
+    
+    <meta name="keywords" content="DevOps, Leaders, Beginners">
+    <link rel="canonical" href="http://devopsdoor.com/blog/devops/leaders/beginners/2024/05/03/Site-Reliability-Engineering/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for DevOpsDoor Blog" href="/blog/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202405171555" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Site Reliability Engineering - Ensuring High Availability and Resilience">
+    <meta property="og:description" content="A Blog By DevOps Door.">
+    <meta property="og:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/03/Site-Reliability-Engineering/">
+    <meta property="og:site_name" content="DevOpsDoor Blog">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Site Reliability Engineering - Ensuring High Availability and Resilience" />
+    <meta name="twitter:description" content="A Blog By DevOps Door." />
+    <meta name="twitter:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/03/Site-Reliability-Engineering/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/blog/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/blog/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/blog/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/blog/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/blog/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/blog/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/blog/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/blog/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/blog/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/blog/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/blog/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6MMB5LW8T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6MMB5LW8T');
+  </script>
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/blog/" class="site-title">DevOpsDoor Blog</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/about/">About DevOpsDoor</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/contact/">Contact Us</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Site Reliability Engineering - Ensuring High Availability and Resilience</h1>
+  <span class="post-meta">May 3, 2024</span><br>
+  
+  <span class="post-meta small">
+  
+    5 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>In today’s always-on digital landscape, ensuring high availability and resilience in Linux environments is critical. Site Reliability Engineering (SRE) provides a framework to achieve these goals through a mix of engineering practices and
+operational strategies. This article delves into implementing high availability and resilience, emphasizing chaos engineering techniques to test and improve system reliability.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>High availability and resilience are crucial for maintaining service uptime and ensuring that systems can recover from failures. SRE combines software engineering and IT operations to create scalable and highly reliable software systems. This
+article provides an in-depth tutorial on SRE practices for high availability and resilience in Linux environments.</p>
+
+<h2 id="understanding-high-availability-and-resilience">Understanding High Availability and Resilience</h2>
+
+<h3 id="high-availability">High Availability</h3>
+
+<p>High availability ensures that systems remain operational and accessible for a maximum amount of time. It involves designing systems with minimal downtime, even in the face of failures.</p>
+
+<h3 id="resilience">Resilience</h3>
+
+<p>Resilience is the ability of a system to recover quickly from failures and continue operating. It focuses on robustness and the capability to withstand and recover from unexpected disruptions.</p>
+
+<h2 id="implementing-high-availability-in-linux-environments">Implementing High Availability in Linux Environments</h2>
+
+<h3 id="load-balancing">Load Balancing</h3>
+
+<p>Load balancing distributes incoming network traffic across multiple servers to ensure no single server becomes a bottleneck. Common tools include NGINX, HAProxy, and Apache HTTP Server.</p>
+
+<h4 id="setting-up-haproxy">Setting Up HAProxy</h4>
+
+<p>I. <strong>Install HAProxy</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">sudo </span>apt-get update
+   <span class="nb">sudo </span>apt-get <span class="nb">install </span>haproxy
+</code></pre></div></div>
+
+<p>II. <strong>Configure HAProxy</strong>:</p>
+
+<ul>
+  <li>
+    <p>Edit <code class="language-plaintext highlighter-rouge">/etc/haproxy/haproxy.cfg</code>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>global
+    log /dev/log    local0
+    log /dev/log    local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5000ms
+    timeout client  50000ms
+    timeout server  50000ms
+    errorfile 400 /etc/haproxy/errors/400.http
+    errorfile 403 /etc/haproxy/errors/403.http
+    errorfile 408 /etc/haproxy/errors/408.http
+    errorfile 500 /etc/haproxy/errors/500.http
+    errorfile 502 /etc/haproxy/errors/502.http
+    errorfile 503 /etc/haproxy/errors/503.http
+    errorfile 504 /etc/haproxy/errors/504.http
+
+frontend http_front
+    bind *:80
+    stats uri /haproxy?stats
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server server1 127.0.0.1:8080 check
+    server server2 127.0.0.1:8081 check
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>III. <strong>Start HAProxy</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">sudo </span>systemctl start haproxy
+   <span class="nb">sudo </span>systemctl <span class="nb">enable </span>haproxy
+</code></pre></div></div>
+
+<h3 id="redundancy">Redundancy</h3>
+
+<p>Redundancy involves having multiple instances of critical components to prevent a single point of failure. Techniques include database replication and server clustering.</p>
+
+<h4 id="implementing-database-replication-with-mysql">Implementing Database Replication with MySQL</h4>
+
+<p>I.  <strong>Configure Master Server</strong>:</p>
+
+<ul>
+  <li>Edit <code class="language-plaintext highlighter-rouge">/etc/mysql/mysql.conf.d/mysqld.cnf</code>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[mysqld]
+server-id = 1
+log_bin = /var/log/mysql/mysql-bin.log
+</code></pre></div>    </div>
+  </li>
+  <li>Restart MySQL:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart mysql
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>II.  <strong>Configure Slave Server</strong>:</p>
+
+<ul>
+  <li>Edit <code class="language-plaintext highlighter-rouge">/etc/mysql/mysql.conf.d/mysqld.cnf</code>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[mysqld]
+server-id = 2
+relay-log = /var/log/mysql/mysql-relay-bin.log
+</code></pre></div>    </div>
+  </li>
+  <li>Restart MySQL
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart mysql
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>III.  <strong>Set Up Replication</strong>:</p>
+
+<ul>
+  <li>On Master Server:
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">'replica'</span><span class="o">@</span><span class="s1">'%'</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">mysql_native_password</span> <span class="k">BY</span> <span class="s1">'password'</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="n">REPLICATION</span> <span class="n">SLAVE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">'replica'</span><span class="o">@</span><span class="s1">'%'</span><span class="p">;</span>
+<span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+<span class="n">FLUSH</span> <span class="n">TABLES</span> <span class="k">WITH</span> <span class="k">READ</span> <span class="k">LOCK</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">MASTER</span> <span class="n">STATUS</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>On Slave Server:
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span>
+<span class="n">MASTER_HOST</span><span class="o">=</span><span class="s1">'master_host_ip'</span><span class="p">,</span>
+<span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">'replica'</span><span class="p">,</span>
+<span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">'password'</span><span class="p">,</span>
+<span class="n">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">'mysql-bin.000001'</span><span class="p">,</span>
+<span class="n">MASTER_LOG_POS</span><span class="o">=</span>  <span class="mi">107</span><span class="p">;</span>
+<span class="k">START</span> <span class="n">SLAVE</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="failover-strategies">Failover Strategies</h3>
+
+<p>Failover automatically switches to a redundant or standby system upon the failure of the primary system. Tools like Pacemaker and Corosync are commonly used.</p>
+
+<h4 id="setting-up-pacemaker-and-corosync">Setting Up Pacemaker and Corosync</h4>
+
+<p>I. <strong>Install Pacemaker and Corosync:</strong>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>apt-get <span class="nb">install </span>pacemaker corosync
+</code></pre></div></div>
+<p>II. <strong>Configure Corosync</strong>:</p>
+
+<ul>
+  <li>Edit <code class="language-plaintext highlighter-rouge">/etc/corosync/corosync.conf</code>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  totem {
+      version: 2
+      cluster_name: mycluster
+      transport: udpu
+      interface {
+          ringnumber: 0
+          bindnetaddr: 192.168.1.0
+          mcastaddr: 239.255.1.1
+          mcastport: 5405
+      }
+  }
+  nodelist {
+      node {
+          ring0_addr: node1
+          nodeid: 1
+      }
+      node {
+          ring0_addr: node2
+          nodeid: 2
+      }
+  }
+  quorum {
+      provider: corosync_votequorum
+  }
+  logging {
+      to_logfile: yes
+      logfile: /var/log/corosync/corosync.log
+      to_syslog: yes
+      syslog_facility: daemon
+  }
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>III. <strong>Start and Enable Services</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>systemctl start corosync
+  <span class="nb">sudo </span>systemctl start pacemaker
+  <span class="nb">sudo </span>systemctl <span class="nb">enable </span>corosync
+  <span class="nb">sudo </span>systemctl <span class="nb">enable </span>pacemaker
+</code></pre></div></div>
+
+<h2 id="implementing-resilience-with-chaos-engineering">Implementing Resilience with Chaos Engineering</h2>
+
+<h3 id="what-is-chaos-engineering">What is Chaos Engineering?</h3>
+
+<p>Chaos engineering involves experimenting on a system to build confidence in its capability to withstand turbulent conditions in production.</p>
+
+<h3 id="tools-for-chaos-engineering">Tools for Chaos Engineering</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Chaos Monkey</code>: A tool developed by Netflix to randomly terminate instances in production to ensure services can tolerate instance failures.</li>
+  <li><code class="language-plaintext highlighter-rouge">Gremlin</code>: A comprehensive chaos engineering platform that allows you to simulate various failure modes.</li>
+</ul>
+
+<h3 id="using-chaos-monkey">Using Chaos Monkey</h3>
+
+<p>I. <strong>Install Chaos Monkey:</strong>:</p>
+
+<p>Follow the <a href="https://github.com/Netflix/chaosmonkey">Chaos Monkey Installation Guide</a>.</p>
+
+<p>III. <strong>Configure Chaos Monkey:</strong>:</p>
+
+<ul>
+  <li>Edit <code class="language-plaintext highlighter-rouge">chaosmonkey.properties</code>:
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">chaosmonkey.account</span><span class="p">=</span><span class="s">default</span>
+<span class="py">chaosmonkey.region</span><span class="p">=</span><span class="s">us-west-2</span>
+<span class="py">chaosmonkey.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">chaosmonkey.leashed</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>III. <strong>Deploy Chaos Monkey</strong>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./gradlew build
+</code></pre></div></div>
+
+<p>IV. <strong>Run Chaos Monkey</strong>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./gradlew run
+</code></pre></div></div>
+
+<h3 id="performing-chaos-experiments">Performing Chaos Experiments</h3>
+
+<p>I. <strong>Define Hypotheses</strong>:</p>
+
+<ul>
+  <li>For example, hypothesize that your web application can withstand the termination of a single instance without affecting user experience.</li>
+</ul>
+
+<p>II. <strong>Run Experiments</strong>:</p>
+
+<ul>
+  <li>Use Chaos Monkey to terminate instances and observe the system’s behavior.</li>
+</ul>
+
+<p>III. <strong>Analyze Results</strong>:</p>
+
+<ul>
+  <li>Collect metrics and logs to understand the impact of the experiment.</li>
+</ul>
+
+<p>IV. <strong>Improve System Resilience</strong>:</p>
+
+<ul>
+  <li>Based on the findings, implement improvements to enhance system resilience.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>High availability and resilience are essential for reliable and stable Linux environments. By implementing load balancing, redundancy, failover strategies, and chaos engineering, you can ensure your systems are robust and capable of withstanding
+failures. Embracing SRE practices helps maintain these qualities, leading to a more reliable infrastructure.</p>
+
+<p>For further insights and hands-on experience, consider joining our Advanced DevOps training program, where we delve deeper into these topics and provide practical experience managing large-scale production environments.</p>
+
+<h2 id="about-the-author">About the Author</h2>
+<p>Hello! I’m Basil Varghese, a seasoned DevOps professional with 16+ years in the industry. As a speaker at conferences like Hashitalks: India, I share insights into cutting-edge DevOps practices. With over 8 years of training experience, I am
+passionate about empowering the next generation of IT professionals.</p>
+
+<p>In my previous role at Akamai, I served as an ex-liaison, fostering collaboration. I founded Doorward Technologies, which became a winner in the Hitachi Appathon, showcasing our commitment to innovation.</p>
+
+<p>Let’s navigate the dynamic world of DevOps together! Connect with me on <a href="https://www.linkedin.com/in/basilv7/">LinkedIn</a> for the latest trends and insights.</p>
+
+<hr />
+<p><a href="https://devopsdoor.com">DevOps Door</a> is here to support your DevOps and SRE learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      DevOps Door.
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/blog/sw.js")
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DevSecOps - Integrating Security into the CI/CD Pipeline &#8211; DevOpsDoor Blog</title>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Blog By DevOps Door.">
+    <link rel="manifest" type="application/manifest+json; charset=utf-8" href="/blog/manifest.json" />
+    <meta name="robots" content="all">
+    <meta name="author" content="Basil Varghese">
+    
+    <meta name="keywords" content="DevOps, Leaders, Beginners">
+    <link rel="canonical" href="http://devopsdoor.com/blog/devops/leaders/beginners/2024/05/06/DevSecOps/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for DevOpsDoor Blog" href="/blog/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/pixyll.css?202405171555" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="DevSecOps - Integrating Security into the CI/CD Pipeline">
+    <meta property="og:description" content="A Blog By DevOps Door.">
+    <meta property="og:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/06/DevSecOps/">
+    <meta property="og:site_name" content="DevOpsDoor Blog">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="DevSecOps - Integrating Security into the CI/CD Pipeline" />
+    <meta name="twitter:description" content="A Blog By DevOps Door." />
+    <meta name="twitter:url" content="http://devopsdoor.com/devops/leaders/beginners/2024/05/06/DevSecOps/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/blog/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/blog/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/blog/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/blog/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/blog/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/blog/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/blog/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/blog/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/blog/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/blog/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/blog/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6MMB5LW8T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6MMB5LW8T');
+  </script>
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/blog/" class="site-title">DevOpsDoor Blog</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/about/">About DevOpsDoor</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="/blog/contact/">Contact Us</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>DevSecOps - Integrating Security into the CI/CD Pipeline</h1>
+  <span class="post-meta">May 6, 2024</span><br>
+  
+  <span class="post-meta small">
+  
+    6 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>In today’s rapidly evolving software landscape, ensuring security is not just an afterthought but a critical part of the development lifecycle. DevSecOps—integrating security practices into DevOps processes—aims to automate and streamline security within the CI/CD pipeline. This article provides a comprehensive tutorial on incorporating security checks into CI/CD pipelines using Azure DevOps and Jenkins. We’ll cover tools and techniques for continuous security monitoring and compliance, offering practical steps and real-world examples.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The DevSecOps approach ensures that security is embedded at every stage of the software development lifecycle, from planning and development to delivery and operations. By integrating security into CI/CD pipelines, organizations can detect and mitigate vulnerabilities early, ensuring robust and secure software releases.</p>
+
+<h2 id="setting-up-security-in-azure-devops">Setting Up Security in Azure DevOps</h2>
+
+<p>Azure DevOps provides a suite of tools to help integrate security into your CI/CD pipelines. Below, we outline the steps to incorporate security checks using Azure DevOps.</p>
+
+<h3 id="step-1-set-up-a-basic-cicd-pipeline">Step 1: Set Up a Basic CI/CD Pipeline</h3>
+
+<ol>
+  <li><strong>Create a New Pipeline</strong>:
+    <ul>
+      <li>Navigate to Azure DevOps and select your project.</li>
+      <li>Go to Pipelines and click on “New pipeline”.</li>
+      <li>Choose your repository source (e.g., Azure Repos, GitHub).</li>
+    </ul>
+  </li>
+  <li><strong>Define Your Pipeline Configuration</strong>:
+    <ul>
+      <li>Use the YAML syntax to define your pipeline configuration.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">trigger</span><span class="pi">:</span>
+  <span class="na">branches</span><span class="pi">:</span>
+    <span class="na">include</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">main</span>
+
+<span class="na">pool</span><span class="pi">:</span>
+  <span class="na">vmImage</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ubuntu-latest'</span>
+
+<span class="na">steps</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">UseDotNet@2</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">packageType</span><span class="pi">:</span> <span class="s1">'</span><span class="s">sdk'</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">5.x'</span>
+      <span class="na">installationPath</span><span class="pi">:</span> <span class="s">$(Agent.ToolsDirectory)/dotnet</span>
+
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">dotnet build --configuration Release</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Build</span><span class="nv"> </span><span class="s">Project'</span>
+
+  <span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">PublishBuildArtifacts@1</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">PathtoPublish</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$(Build.ArtifactStagingDirectory)'</span>
+      <span class="na">ArtifactName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">drop'</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-2-integrate-security-tools">Step 2: Integrate Security Tools</h3>
+
+<ol>
+  <li><strong>Static Application Security Testing (SAST)</strong>:
+    <ul>
+      <li>Incorporate a SAST tool like SonarQube to analyze your code for security vulnerabilities.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">SonarQubePrepare@5</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">SonarQube</span><span class="pi">:</span> <span class="s1">'</span><span class="s">SonarQubeServer'</span>
+      <span class="na">scannerMode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">MSBuild'</span>
+      <span class="na">projectKey</span><span class="pi">:</span> <span class="s1">'</span><span class="s">my-project'</span>
+      <span class="na">projectName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">My</span><span class="nv"> </span><span class="s">Project'</span>
+
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">dotnet build --configuration Release</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Build</span><span class="nv"> </span><span class="s">Project'</span>
+
+  <span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">SonarQubeAnalyze@5</span>
+
+  <span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">SonarQubePublish@5</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">pollingTimeoutSec</span><span class="pi">:</span> <span class="s1">'</span><span class="s">300'</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Dependency Scanning</strong>:
+    <ul>
+      <li>Use tools like WhiteSource or OWASP Dependency-Check to scan for vulnerable dependencies.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">WhiteSourceBolt@20</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">cwd</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$(System.DefaultWorkingDirectory)'</span>
+      <span class="na">product</span><span class="pi">:</span> <span class="s1">'</span><span class="s">my-product'</span>
+      <span class="na">project</span><span class="pi">:</span> <span class="s1">'</span><span class="s">my-project'</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-3-implement-dynamic-application-security-testing-dast">Step 3: Implement Dynamic Application Security Testing (DAST)</h3>
+
+<ol>
+  <li><strong>DAST with OWASP ZAP</strong>:
+    <ul>
+      <li>Use OWASP ZAP for dynamic security testing.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">wget https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2_10_0_unix.sh</span>
+      <span class="s">chmod +x ZAP_2_10_0_unix.sh</span>
+      <span class="s">./ZAP_2_10_0_unix.sh -q -dir /zap</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Download</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Install</span><span class="nv"> </span><span class="s">OWASP</span><span class="nv"> </span><span class="s">ZAP'</span>
+
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">/zap/zap.sh -daemon -config api.disablekey=true -config scanner.threadPerHost=10 -config view.mode=attack -port 8090 -host 0.0.0.0 -config connection.dnsTtlSuccessfulQueries=0</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Start</span><span class="nv"> </span><span class="s">OWASP</span><span class="nv"> </span><span class="s">ZAP'</span>
+
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">while ! nc -z localhost 8090; do</span>
+        <span class="s">sleep 1</span>
+      <span class="s">done</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Wait</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">ZAP</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">start'</span>
+
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">zap-cli --zap-url http://localhost -p 8090 quick-scan http://my-application-url</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Run</span><span class="nv"> </span><span class="s">ZAP</span><span class="nv"> </span><span class="s">Scan'</span>
+
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">zap-cli --zap-url http://localhost -p 8090 report -o zap_report.html -f html</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Generate</span><span class="nv"> </span><span class="s">ZAP</span><span class="nv"> </span><span class="s">Report'</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-4-continuous-monitoring-and-compliance">Step 4: Continuous Monitoring and Compliance</h3>
+
+<ol>
+  <li><strong>Security Information and Event Management (SIEM)</strong>:
+    <ul>
+      <li>Integrate with a SIEM tool like Azure Sentinel to monitor security events and alerts continuously.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">az sentinel alert create --resource-group myResourceGroup --workspace-name myWorkspace --alert-rule myAlertRule</span>
+    <span class="na">displayName</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Create</span><span class="nv"> </span><span class="s">SIEM</span><span class="nv"> </span><span class="s">Alert'</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Compliance as Code</strong>:
+    <ul>
+      <li>Use tools like InSpec or Chef Compliance to enforce compliance policies.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">steps</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">task</span><span class="pi">:</span> <span class="s">InSpec@1</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">target</span><span class="pi">:</span> <span class="s1">'</span><span class="s">https://my-application-url'</span>
+      <span class="na">profile</span><span class="pi">:</span> <span class="s1">'</span><span class="s">compliance-profile'</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="setting-up-security-in-jenkins">Setting Up Security in Jenkins</h2>
+
+<p>Jenkins is a widely used CI/CD tool that can also be configured for DevSecOps practices. Here’s how you can integrate security checks in Jenkins.</p>
+
+<h3 id="step-1-set-up-a-basic-pipeline">Step 1: Set Up a Basic Pipeline</h3>
+
+<ol>
+  <li><strong>Create a New Pipeline</strong>:
+    <ul>
+      <li>Open Jenkins and create a new pipeline job.</li>
+      <li>Configure your SCM (e.g., Git) repository.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Define Your Pipeline Script</strong>:</p>
+
+    <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// Build steps</span>
+                    <span class="n">sh</span> <span class="s1">'dotnet build --configuration Release'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Publish Artifacts'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">'**/target/*.jar'</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-2-integrate-security-tools-1">Step 2: Integrate Security Tools</h3>
+
+<ol>
+  <li><strong>Static Code Analysis</strong>:
+    <ul>
+      <li>Integrate SonarQube for static code analysis.</li>
+    </ul>
+
+    <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// Build steps</span>
+                    <span class="n">sh</span> <span class="s1">'dotnet build --configuration Release'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'SonarQube Analysis'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// SonarQube steps</span>
+                    <span class="n">withSonarQubeEnv</span><span class="o">(</span><span class="s1">'SonarQubeServer'</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">sh</span> <span class="s1">'dotnet sonarscanner begin /k:"my-project" /d:sonar.login="${env.SONAR_TOKEN}"'</span>
+                        <span class="n">sh</span> <span class="s1">'dotnet build'</span>
+                        <span class="n">sh</span> <span class="s1">'dotnet sonarscanner end /d:sonar.login="${env.SONAR_TOKEN}"'</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Publish Artifacts'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">'**/target/*.jar'</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Dependency Scanning</strong>:
+    <ul>
+      <li>Use OWASP Dependency-Check for dependency scanning.</li>
+    </ul>
+
+    <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// Build steps</span>
+                    <span class="n">sh</span> <span class="s1">'dotnet build --configuration Release'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Dependency Check'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// Dependency-Check steps</span>
+                    <span class="n">dependencyCheck</span> <span class="nl">additionalArguments:</span> <span class="s1">'--project "my-project" --scan "**/*.csproj" --out "dependency-check-report.html"'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Publish Artifacts'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">'**/target/*.jar'</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-3-implement-dynamic-security-testing">Step 3: Implement Dynamic Security Testing</h3>
+
+<ol>
+  <li><strong>DAST with OWASP ZAP</strong>:
+    <ul>
+      <li>Use OWASP ZAP for dynamic application security testing.</li>
+    </ul>
+
+    <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// Build steps</span>
+                    <span class="n">sh</span> <span class="s1">'dotnet build --configuration Release'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Run OWASP ZAP'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// OWASP ZAP steps</span>
+                    <span class="n">sh</span> <span class="s1">'wget https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2_10_0_unix.sh'</span>
+                    <span class="n">sh</span> <span class="s1">'chmod +x ZAP_2_10_0_unix.sh'</span>
+                    <span class="n">sh</span> <span class="s1">'./ZAP_2_10_0_unix.sh -q -dir /zap'</span>
+                    <span class="n">sh</span> <span class="s1">'/zap/zap.sh -daemon -config api.disablekey=true -config scanner.threadPerHost=10 -config view.mode=attack -port 8090 -host 0.0.0.0 -config connection.dnsTtlSuccessfulQueries=0'</span>
+                    <span class="n">sh</span> <span class="s1">'while ! nc -z localhost 8090; do sleep 1; done'</span>
+                    <span class="n">sh</span> <span class="s1">'zap-cli --zap-url http://localhost -p 8090 quick-scan http://my-application-url'</span>
+                    <span class="n">sh</span> <span class="s1">'zap-cli --zap-url http://localhost -p 8090 report -o zap_report.html -f html'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Publish Artifacts'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">'zap_report.html'</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="step-4-continuous-monitoring">Step 4: Continuous Monitoring</h3>
+
+<p>and Compliance</p>
+
+<ol>
+  <li><strong>Integrate with SIEM Tools</strong>:
+    <ul>
+      <li>Use Jenkins plugins to integrate with SIEM tools like Splunk or Elastic Stack.</li>
+    </ul>
+
+    <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// Build steps</span>
+                    <span class="n">sh</span> <span class="s1">'dotnet build --configuration Release'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'SIEM Integration'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// SIEM steps</span>
+                    <span class="n">splunkins_send</span> <span class="nl">data:</span> <span class="s1">'Security event: build completed'</span><span class="o">,</span> <span class="nl">source:</span> <span class="s1">'jenkins'</span><span class="o">,</span> <span class="nl">sourcetype:</span> <span class="s1">'_json'</span><span class="o">,</span> <span class="nl">index:</span> <span class="s1">'main'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Publish Artifacts'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">'**/target/*.jar'</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Compliance as Code</strong>:
+    <ul>
+      <li>Use Jenkins to run compliance checks with tools like InSpec or Chef Compliance.</li>
+    </ul>
+
+    <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// Build steps</span>
+                    <span class="n">sh</span> <span class="s1">'dotnet build --configuration Release'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Compliance Check'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="c1">// InSpec compliance check</span>
+                    <span class="n">sh</span> <span class="s1">'inspec exec compliance-profile'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Publish Artifacts'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">archiveArtifacts</span> <span class="nl">artifacts:</span> <span class="s1">'**/target/*.jar'</span><span class="o">,</span> <span class="nl">allowEmptyArchive:</span> <span class="kc">true</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Integrating security into the CI/CD pipeline through DevSecOps practices ensures that vulnerabilities are identified and mitigated early in the development process. Azure DevOps and Jenkins provide robust platforms to embed security checks using a variety of tools and techniques. By following the steps outlined in this article, you can enhance the security posture of your applications and ensure continuous security monitoring and compliance.</p>
+
+<p>For more hands-on experience and advanced techniques, consider joining our Advanced DevOps training program, where we cover DevSecOps practices and other essential DevOps tools in depth.</p>
+
+<h2 id="about-the-author">About the Author</h2>
+<p>Hello! I’m Basil Varghese, a seasoned DevOps professional with 16+ years in the industry. As a speaker at conferences like Hashitalks: India, I share insights into cutting-edge DevOps practices. With over 8 years of training experience, I am
+passionate about empowering the next generation of IT professionals.</p>
+
+<p>In my previous role at Akamai, I served as an ex-liaison, fostering collaboration. I founded Doorward Technologies, which became a winner in the Hitachi Appathon, showcasing our commitment to innovation.</p>
+
+<p>Let’s navigate the dynamic world of DevOps together! Connect with me on <a href="https://www.linkedin.com/in/basilv7/">LinkedIn</a> for the latest trends and insights.</p>
+
+<hr />
+<p><a href="https://devopsdoor.com">DevOps Door</a> is here to support your DevOps and SRE learning journey. Join our DevOps training programs to gain hands-on experience and expert guidance. Let’s unlock the potential of seamless software development together!</p>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      DevOps Door.
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/blog/sw.js")
+    }
+</script>
+
+</body>
+</html>
